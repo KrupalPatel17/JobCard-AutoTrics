@@ -1,0 +1,22 @@
+.box1{
+    border: 2px solid black;
+    width:400px ;
+    padding-left: 50px;
+}
+
+.box2{
+    border: 2px solid black;
+    width:908px ;
+    text-align: left;
+}
+
+.box3{
+    border: 2px solid black;
+    width:908px ;
+    
+}
+
+.jobNo{
+    font-size: 21px;
+    text-align: center;
+}
