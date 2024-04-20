@@ -1,22 +1,261 @@
-.box1{
+.box1 {
     border: 2px solid black;
-    width:400px ;
+    width: 400px;
     padding-left: 50px;
 }
 
-.box2{
+#header{
     border: 2px solid black;
-    width:908px ;
-    text-align: left;
-}
-
-.box3{
-    border: 2px solid black;
-    width:908px ;
+    border-bottom: none;
+    width: 911px;
+    padding-left: 50px;
     
 }
 
-.jobNo{
+#td2 {
+    border-left:2px solid black ;
+}
+.box2 {
+    border: 2px solid black;
+    width: 908px;
+    text-align: left;
+    font-size: 99%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.box3 {
+    border: 2px solid black;
+    width: 908px;
+
+}
+
+.box4 {
+    border: 2px solid black;
+    width: 908px;
+    text-align: left;
+    font-size: 80%;
+    overflow: hidden;
+}
+
+.box5 {
+    border: 2px solid black;
+    width: 908px;
+    overflow-x: hidden; 
+    text-align: left;
+    font-size: 110%;
+  
+}
+
+
+
+.box6 {
+    border: 2px solid black;
+    width: 480px;
+    text-align: left;
+    font-size: 110%;
+    overflow: hidden;
+}
+
+.box7 {
+    border: 2px solid black;
+    border-left: none;
+    width: 420px;
+    text-align: left;
+    font-size: 110%;
+    overflow: hidden;
+     display: flex;
+    
+}
+.box8{
+    border-top: 2px solid black;
+    overflow: hidden;
+     display: block;
+}
+.box13{
+  
+    overflow: hidden;
+     display: block;
+}
+
+.box9{
+    display: flex;
+    justify-content: center;
+}
+.box10{
+   
+    border-top: 2px solid black;
+    display: block;
+}
+.box11{
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    font-size: 66%;
+}
+.box12{
+    border-top: 2px solid black;
+}
+
+.box14{
+    margin-top: 20px;
+ overflow: hidden;
+ margin-left: 173px;
+}
+
+.box15{
+    text-align: right;
+    margin-right: 175px;
+}
+.box16 {
+
+    width: 530px;
+    text-align: left;
+    font-size: 110%;
+    overflow: hidden;
+    
+}
+
+.box17{
+    overflow: hidden;
+    display: block;
+}
+.box18{
+    overflow: hidden;
+    display: block;
+    margin-left: 20px;
+    width: 353px;
+
+}
+.box19{
+    border: 1px solid black;
+    margin-bottom: 10px;
+
+ 
+}
+.box20{
+    border: 1px solid black;
+    text-align: left;
+}
+
+.con {
+    display: flex;
+    justify-content: center;
+}
+.con2 {
+    display: flex;
+    width: 908px;
+    margin-top: 10px;
+   
+}
+
+.jobNo {
     font-size: 21px;
     text-align: center;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+#example {
+    width: 100%;
+}
+
+#example td {
+    font-size: 89%;
+    border: 1px solid black;
+    
+}
+
+#example tr:nth-child(even) {
+    background-color: #ff3c3c;
+}
+
+#tbl_footer{
+    width: 90%;
+    margin-left: 15%;
+    font-weight: bold;
+}
+#example2 td {
+    font-size: 102%;
+      border: 1px solid black;
+}
+
+#example4 td {
+    font-size: 105%;
+      border: 1px solid black;
+}
+
+#example5 td{
+    border: 1px solid black;
+}
+
+#tbl_bottom{
+    font-size: 12px;
+    padding-top: 80px;
+  
+}
+
+@media print {
+    body {
+        overflow: hidden;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    .box14{
+        margin-top: 20px;
+     overflow: hidden;
+     margin-left:0px;
+     
+    }
+
+    .box15{
+        text-align: right;
+        margin-right: 0px;
+        margin-top: 2px;
+    }
+  
+}
+
+
+#printButton{
+    width: 13%;
+    height: 7%;
+    color: aqua;
+    background-color: darkblue;
+    font-size: 20px;
+    border: 1px solid aqua;
+    border-radius: 10px;
+    margin-top: 20px;
+    transition: all ease 0.5s;
+}
+
+#printButton:hover{
+    transform: scale(1.10);
+}
+
+.center-content {
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {   
+     .box14{
+        margin-top: 20px;
+     overflow: hidden;
+     margin-left: 29px;
+    }
+
+    #printButton{
+        width: 10%;
+        height: 3%;
+        color: aqua;
+        background-color: darkblue;
+        font-size: 20px;
+        border: 1px solid aqua;
+        border-radius: 10px;
+        margin-top: 20px;
+        transition: all ease 0.5s;
+    }
 }
