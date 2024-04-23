@@ -3,9 +3,8 @@
 <head>
     <link href="J.css" rel="stylesheet">
     <title>JOB CARD</title>
-    <script src="https://cdn.jsdelivr.net/npm/handsontable@14.2/dist/handsontable.full.min.js"></script>
-    <link type="text/css" rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/handsontable@14.2/dist/handsontable.full.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.min.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 
@@ -17,7 +16,7 @@
 
 <body>
     <center>
-        <h4>JOB CARD</h4>
+        <h3 style="font-family: Arial, Helvetica, sans-serif;">JOB CARD</h3>
         <table id="header">
             <tr>
                 <td>
@@ -39,12 +38,12 @@
                 <div style="padding-top:5px;"><b style="margin-left: 5px;">Advisor:</b><input type="text" size="25"><b>
                         REG NO.</b><input type="text" size="18"><b> Technician</b><input type="text" size="18"></div>
                 <div style="padding-top:8px;"><b style="margin-left: 5px;">User Name:</b><input type="text"
-                        size="24"><b> Model </b><input type="text" size="20"><b> Chassis</b><input type="text"
-                        size="20"><b> Date </b><input type="date"></div>
+                        size="21"><b> Model </b><input type="text" size="20"><b> Chassis</b><input type="text"
+                        size="19"><b> Date </b><input type="date"></div>
                 <div style="padding-top:8px;">
                     <div style="padding-bottom:8px;"><b style="margin-left: 5px;">Mob No.:</b><input type="text"
-                            size="22"><b> KMS </b><input type="text" size="20"><b> Engine </b><input type="text"
-                            size="20"><b> Entery Time </b><input type="time">
+                            size="24"><b> KMS </b><input type="text" size="22"><b> Engine </b><input type="text"
+                            size="18"><b> Entery Time </b><input type="time"  id="entryTime">
 
                     </div>
                 </div>
@@ -54,14 +53,15 @@
                 <div class="box3">
                     <img src="p3.png" width="770px" height="60px">
                 </div>
-            </div>
-
-            <div style="padding-top: 4px;">
                 <div class="box4">
                     <b>
                         <p>Type of Service : Paid Service / Running Repaird / MOS / Accident Repair</p>
                     </b>
                 </div>
+            </div>
+
+            <div style="padding-top: 1px;">
+                
             </div>
 
             <div style="padding-top: 4px;">
@@ -146,9 +146,17 @@
 
 
                 <div class="box7">
-                    <img src="car.png" alt="" width="50%" height="90%" style="padding-top: 5%;">
+                    <div class="img" id="imgWrapper">
+                        <!-- <input type="checkbox" name="" id="front"> -->
+                    </div>
+                    <!-- <img src="car.png" alt="" width="50%" height="90%" style="padding-top: 5%;"> -->
                     <div class="box13">
-                        <img src="fule2.jpg" alt="" width="99.9%" height="12%"> <br>
+                        <div class="fuleing">
+                            <input type="checkbox" name="" id="fule1">
+                            <input type="checkbox" name="" id="fule2">
+                            <input type="checkbox" name="" id="fule3">
+                        <!-- <img src="fule2.jpg" alt="" width="99.9%" height="12%"> <br> -->
+                        </div>
                         <div id="example2" class="hot2 "></div>
                     </div>
                 </div>
@@ -204,40 +212,99 @@
 
         </div>
         <button id="printButton" onclick="printPage()">Print <i class="ri-printer-fill"></i></button>
+         <button id="clearButton">Clear Checkboxes</button>
     </center>
     <script>
+        // Function to create a checkbox element
+        function createCheckbox(x, y) {
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.style.position = 'absolute';
+            checkbox.style.left = `${x}px`;
+            checkbox.style.top = `${y}px`;
+            document.getElementById('imgWrapper').appendChild(checkbox);
+        }
 
+        // Event listener for double-click on the .img div
+        document.getElementById('imgWrapper').addEventListener('dblclick', function (event) {
+            const x = event.clientX - this.getBoundingClientRect().left;
+            const y = event.clientY - this.getBoundingClientRect().top;
+            createCheckbox(x, y);
+        });
 
+        // Function to clear all checkboxes
+        function clearCheckboxes() {
+            const imgWrapper = document.getElementById('imgWrapper');
+            const checkboxes = imgWrapper.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function (checkbox) {
+                checkbox.remove();
+            });
+        }
+
+        // Event listener for the clear button
+        document.getElementById('clearButton').addEventListener('click', function () {
+            clearCheckboxes();
+        });
+    </script>
+
+   
+    <script>
         const container = document.querySelector('#example');
         const hot = new Handsontable(container, {
             data: [
-                ['Addional Job/Repair(to be fill by customers)', 'Service Advisor finding based on probing with customer', 'Description', 'Partts', 'Labour'],
-                ['', , , ,],
-                ['', , , ,],
-                ['', , , ,],
-                ['', , , ,],
-                ['', , , ,],
-                ['', , , ,],
-                ['', , , ,],
-                ['', , , ,],
-                ['', , , ,],
-                ['', , , ,],
-                ['', , , ,],
-                ['', , , ,],
-                ['', , , ,],
-                ['', , , ,],
-                ['', , 'Total of Parts & Labour', ,],
-                ['', , 'Total Cost', ,],
+                ['Addional Job/Repair (to be filled by customers)', 'Service Advisor finding based on probing with customer', 'Description', 'Parts', 'Labour'],
+                ['', '', '', '', ''],
+                ['', '', '', '', ''],
+                ['', '', '', '', ''],
+                ['', '', '', '', ''],
+                ['', '', '', '', ''],
+                ['', '', '', '', ''],
+                ['', '', '', '', ''],
+                ['', '', '', '', ''],
+                ['', '', '', '', ''],
+                ['', '', '', '', ''],
+                ['', '', '', '', ''],
+                ['', '', '', '', ''],
+                ['', '', '', '', ''],
+                ['', '', '', '', ''],
+                ['', '', 'Total of Parts & Labour', '', ''],
+                ['', '', 'Total Cost', '', ''],
             ],
 
             height: 'auto',
             autoWrapRow: true,
             autoWrapCol: true,
-            licenseKey: 'non-commercial-and-evaluation' // for non-commercial use only
+            licenseKey: 'non-commercial-and-evaluation',
         });
 
-    </script>
+        // Calculate totals for Parts and Labour columns
+        hot.addHook('afterChange', (changes, source) => {
+            if (source === 'edit') {
+                const data2 = hot.getData();
+                const partsColumnIndex = 3; // Index of the Parts column
+                const labourColumnIndex = 4; // Index of the Labour column
 
+                let totalParts = 0;
+                let totalLabour = 0;
+
+                for (let i = 1; i < data2.length - 2; i++) {
+                    totalParts += parseFloat(data2[i][partsColumnIndex]) || 0;
+                    totalLabour += parseFloat(data2[i][labourColumnIndex]) || 0;
+                }
+
+                // Update the second-to-last row with the calculated totals (rounded to integers)
+                data2[data2.length - 2][partsColumnIndex] = Math.round(totalParts);
+                data2[data2.length - 2][labourColumnIndex] = Math.round(totalLabour);
+
+                // Calculate the sum of "Total of Parts & Labour" and "Total Cost"
+                const totalSum = Math.round(data2[data2.length - 2][partsColumnIndex] + data2[data2.length - 2][labourColumnIndex]);
+                data2[data2.length - 1][labourColumnIndex] = totalSum;
+
+                // Render the updated data
+                hot.loadData(data2);
+            }
+        });
+    </script>
     <script>
 
         const container2 = document.querySelector('#example2');
@@ -325,13 +392,13 @@
 
         ];
 
+      
         const hot4 = new Handsontable(container4, {
             data,
             startRows: 5,
             startCols: 5,
             height: 'auto',
             width: 'auto',
-            // colHeaders: true,
             autoWrapRow: true,
             autoWrapCol: true,
             colWidths: [50, 380, 300, 60, 110],
@@ -339,9 +406,7 @@
             cells: function (row, col) {
                 return { className: 'center-content' };
             }
-
         });
-
     </script>
 
     <script>
@@ -379,17 +444,80 @@
 
         function printPage() {
             // Hide the print button before printing
-            document.getElementById("printButton").style.display = "none";
+            document.getElementById("printButton").style.visibility = "hidden";
+            document.getElementById("clearButton").style.visibility = "hidden";
             // Trigger printing
             window.print();
             // Show the print button after printing (using a timeout to ensure it's visible after the print dialog closes)
             setTimeout(function () {
-                document.getElementById("printButton").style.display = "block";
+                document.getElementById("printButton").style.visibility = "visible";
+                document.getElementById("clearButton").style.visibility = "visible";
             }, 100);
         }
     </script>
 
+<!-- <script>
+    function getCurrentDateTime() {
+        const now = new Date();
+        const year = now.getFullYear();
+        let month = now.getMonth() + 1;
+        let day = now.getDate();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
 
+        // Add leading zeros if needed
+        month = month < 10 ? '0' + month : month;
+        day = day < 10 ? '0' + day : day;
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+
+        return `${year}-${month}-${day}T${hours}:${minutes}`; // Date and time format: YYYY-MM-DDTHH:MM
+    }
+
+    function updateDateTime() {
+        const dateInput = document.querySelector('input[type="date"]');
+        const timeInput = document.getElementById('entryTime');
+        
+        const currentDateTime = getCurrentDateTime();
+        dateInput.value = currentDateTime.slice(0, 10);
+        timeInput.value = currentDateTime.slice(11, 16);
+    }
+
+    // Call updateDateTime initially to set the date and time
+    updateDateTime();
+
+    setInterval(updateDateTime, 1000);
+</script> -->
+
+
+<script>
+    function getCurrentDateTime() {
+        const now = new Date();
+        const year = now.getFullYear();
+        let month = now.getMonth() + 1;
+        let day = now.getDate();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+
+        // Add leading zeros if needed
+        month = month < 10 ? '0' + month : month;
+        day = day < 10 ? '0' + day : day;
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+
+        return `${year}-${month}-${day}T${hours}:${minutes}`; // Date and time format: YYYY-MM-DDTHH:MM
+    }
+
+    // Set current date and time in the date input element
+    const dateInput = document.querySelector('input[type="date"]');
+    dateInput.value = getCurrentDateTime().slice(0, 10);
+
+    // Set current time in the time input element
+    const timeInput = document.getElementById('entryTime');
+    timeInput.value = getCurrentDateTime().slice(11, 16); 
+
+   
+</script>
 
 
 </body>

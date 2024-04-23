@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse and Touch Drawing</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #drawingArea {
+            position: relative;
+            width: 210px;
+            height: 400px;
+            background-image: url("D:/JOB CARD 2.o/car.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        #myCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 1px solid black;
+        }
+
+        #clearButton {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+        }
+
+        .box7 {
+            border: 2px solid black;
+            border-left: none;
+            width: 420px;
+            text-align: left;
+            font-size: 110%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+        }
+
+        .con {
+            display: flex;
+            justify-content: center; /* Center vertically */
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        <div class="box7">
+            <div id="drawingArea">
+                <canvas id="myCanvas" width="210" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+    <button id="clearButton" onclick="erase()">Clear</button>
+
+    
+    <script>
+        let canvas, ctx, drawing = false;
+
+        function init() {
+            canvas = document.getElementById('myCanvas');
+            ctx = canvas.getContext('2d');
+
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+
+            canvas.addEventListener('touchstart', startDrawing);
+            canvas.addEventListener('touchmove', draw);
+            canvas.addEventListener('touchend', stopDrawing);
+        }
+
+        function startDrawing(e) {
+            drawing = true;
+            ctx.beginPath();
+            ctx.moveTo(getX(e), getY(e));
+        }
+
+        function draw(e) {
+            if (!drawing) return;
+            ctx.lineTo(getX(e), getY(e));
+            ctx.stroke();
+        }
+
+        function stopDrawing() {
+            drawing = false;
+            ctx.closePath();
+        }
+
+        function erase() {
+            const m = confirm("Do you want to clear the canvas?");
+            if (m) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        function getX(e) {
+            return e.clientX || e.touches[0].clientX;
+        }
+
+        function getY(e) {
+            return e.clientY || e.touches[0].clientY;
+        }
+
+        init();
+    </script>
+    
+</body>
+</html>
